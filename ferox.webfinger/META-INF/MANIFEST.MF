@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Webfinger
+Bundle-SymbolicName: ferox.webfinger
+Bundle-Version: 1.0.0.qualifier
+Import-Package: com.tantaman.ferox.api
+Export-Package: com.tantaman.ferox.webfinger
