@@ -34,7 +34,7 @@ public class ExampleServer {
 	}
 
 	public void activate(ComponentContext context) {
-		System.out.println("ACTIVATED");
+		System.out.println("ACTIVATED FINGER");
 		IFeroxServerBuilder b = serverFactories.createServerBuilder();
 
 		b.port(8082);
@@ -59,8 +59,8 @@ public class ExampleServer {
 		
 		webfingerResourceProvider.setConfiguration(_.createMap(new String [] {
 				"contentType", "application/json",
-				"metaRoot", "/webfingertest/.well-known",
-				"indentityRoot", "/webfingertest/identities"
+				"metaRoot", "resources/webfinger/meta",
+				"indentityRoot", "resources/identities"
 		}));
 		WebfingerInitializer init = new WebfingerInitializer(webfingerResourceProvider);
 		init.addWebfinger(routerBuilder);

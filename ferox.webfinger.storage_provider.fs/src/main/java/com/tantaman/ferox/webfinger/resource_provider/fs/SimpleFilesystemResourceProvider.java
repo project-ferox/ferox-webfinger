@@ -13,6 +13,10 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	private IResource meta;
 	private String contentType;
 	
+	public SimpleFilesystemResourceProvider() {
+		System.out.println("CREATED FS RP");
+	}
+	
 	public void setConfiguration(Map<Object, Object> configuration) {
 		String metaRoot = (String)configuration.get("metaRoot");
 		contentType = (String)configuration.get("contentType");
@@ -35,7 +39,7 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 		String ident = readFully(f);
 		
 		if (ident == null) {
-			return new StringResource(contentType, "");
+			return null;
 		} else {
 			return new StringResource(contentType, ident);
 		}

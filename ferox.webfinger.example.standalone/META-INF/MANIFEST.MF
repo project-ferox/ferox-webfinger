@@ -10,3 +10,4 @@ Import-Package: com.tantaman.ferox.api;version="1.0.0",
  io.netty.channel;version="4.0.0.CR5-SNAPSHOT",
  io.netty.handler.codec.http;version="4.0.0.CR5-SNAPSHOT",
  org.osgi.service.component;version="1.2.0"
+Service-Component: OSGI-INF/ExampleServer.xml
