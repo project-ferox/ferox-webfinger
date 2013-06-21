@@ -3,5 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Webfinger
 Bundle-SymbolicName: ferox.webfinger
 Bundle-Version: 1.0.0.qualifier
-Import-Package: com.tantaman.ferox.api
+Import-Package: com.tantaman.ferox.api,
+ io.netty.handler.codec.http;version="4.0.0.CR5-SNAPSHOT"
 Export-Package: com.tantaman.ferox.webfinger
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

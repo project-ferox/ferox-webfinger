@@ -63,7 +63,7 @@ public class ExampleServer {
 				"indentityRoot", "/webfingertest/identities"
 		}));
 		WebfingerInitializer init = new WebfingerInitializer(webfingerResourceProvider);
-		init.addWebfinger("/.well-known", "/identities", routerBuilder);
+		init.addWebfinger(routerBuilder);
 		b.use("ferox", feroxFactories.createFeroxChannelHandlerFactory(routerBuilder.build()));
 		
 		IFeroxServer server = b.build();
