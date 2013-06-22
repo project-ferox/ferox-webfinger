@@ -34,7 +34,6 @@ public class ExampleServer {
 	}
 
 	public void activate(ComponentContext context) {
-		System.out.println("ACTIVATED FINGER");
 		IFeroxServerBuilder b = serverFactories.createServerBuilder();
 
 		b.port(8082);

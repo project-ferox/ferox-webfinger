@@ -14,7 +14,6 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	private String contentType;
 	
 	public SimpleFilesystemResourceProvider() {
-		System.out.println("CREATED FS RP");
 	}
 	
 	public void setConfiguration(Map<Object, Object> configuration) {
