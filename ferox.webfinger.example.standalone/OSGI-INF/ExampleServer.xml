@@ -3,6 +3,6 @@
 <component name="com.tantaman.ferox.webfinger.example.standalone.ExampleServer" immediate="true">
   <implementation class="com.tantaman.ferox.webfinger.example.standalone.ExampleServer"/>
   <reference name="feroxFactories" cardinality="1..1" interface="com.tantaman.ferox.api.IFeroxFactories" bind="setFeroxFactories"/>
-  <reference name="serverFactories" cardinality="1..1" interface="com.tantaman.ferox.api.IFeroxServerFactories" bind="setServerFactories"/>
+  <reference name="serverFactories" cardinality="1..1" interface="com.tantaman.ferox.api.server.IFeroxServerFactories" bind="setServerFactories"/>
   <reference name="webfingerResourceProvider" cardinality="1..1" interface="com.tantaman.ferox.webfinger.IResourceProvider" bind="setWebfingerResourceProvider"/>
 </component>

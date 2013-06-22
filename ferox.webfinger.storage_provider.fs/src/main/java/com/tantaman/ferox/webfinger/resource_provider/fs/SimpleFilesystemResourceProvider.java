@@ -17,11 +17,11 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	}
 	
 	public void setConfiguration(Map<Object, Object> configuration) {
-		String metaRoot = (String)configuration.get("metaRoot");
+		String metaPath = (String)configuration.get("metaPath");
 		contentType = (String)configuration.get("contentType");
 		identityRoot = (String)configuration.get("identityRoot");
 		
-		File f = new File(metaRoot);
+		File f = new File(metaPath);
 		String m = readFully(f);
 		if (m == null) m = "";
 		
@@ -29,11 +29,9 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	}
 	
 	@Override
-	public IResource getIdentity(String path) {
-		path = path.replace("..", "");
-		File f = new File(identityRoot + "/" + path);
-		if (!f.getAbsolutePath().startsWith(identityRoot))
-			return IResource.ILLEGAL;
+	public IResource getIdentity(String resource) {
+		resource = resource.replace("..", "").replace("/", "").replace("@", "-").replace(":", "-");
+		File f = new File(identityRoot + "/" + resource);
 		
 		String ident = readFully(f);
 		

@@ -1,5 +1,8 @@
 package com.tantaman.ferox.webfinger.example.standalone;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.osgi.service.component.ComponentContext;
 
 import io.netty.channel.ChannelHandler;
@@ -8,10 +11,10 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
 
 import com.tantaman.ferox.api.IChannelHandlerFactory;
 import com.tantaman.ferox.api.IFeroxFactories;
-import com.tantaman.ferox.api.IFeroxServer;
-import com.tantaman.ferox.api.IFeroxServerBuilder;
-import com.tantaman.ferox.api.IFeroxServerFactories;
-import com.tantaman.ferox.api.IRouterBuilder;
+import com.tantaman.ferox.api.router.IRouterBuilder;
+import com.tantaman.ferox.api.server.IFeroxServer;
+import com.tantaman.ferox.api.server.IFeroxServerBuilder;
+import com.tantaman.ferox.api.server.IFeroxServerFactories;
 import com.tantaman.ferox.webfinger.IResourceProvider;
 import com.tantaman.ferox.webfinger.WebfingerInitializer;
 import com.tantaman.lo4j._;
@@ -35,6 +38,9 @@ public class ExampleServer {
 
 	public void activate(ComponentContext context) {
 		IFeroxServerBuilder b = serverFactories.createServerBuilder();
+		
+		Logger logger = Logger.getLogger(WebfingerInitializer.class.getName());
+		logger.setLevel(Level.INFO);
 
 		b.port(8082);
 		b.use("decoder", new IChannelHandlerFactory() {
@@ -58,8 +64,8 @@ public class ExampleServer {
 		
 		webfingerResourceProvider.setConfiguration(_.createMap(new String [] {
 				"contentType", "application/json",
-				"metaRoot", "resources/webfinger/meta",
-				"indentityRoot", "resources/identities"
+				"metaPath", "resources/webfinger/meta.json",
+				"identityRoot", "resources/webfinger/identities"
 		}));
 		WebfingerInitializer init = new WebfingerInitializer(webfingerResourceProvider);
 		init.addWebfinger(routerBuilder);

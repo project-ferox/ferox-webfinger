@@ -1,10 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Standalone
-Bundle-SymbolicName: ferox.webfinger.example.standalone
+Bundle-Name: ferox.webfinger.example.standalone
+Bundle-SymbolicName: com.tantaman.ferox.webfinger.example.standalone
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: com.tantaman.ferox.api;version="1.0.0",
+ com.tantaman.ferox.api.router,
+ com.tantaman.ferox.api.server,
  com.tantaman.ferox.webfinger,
  com.tantaman.lo4j;version="1.0.0",
  io.netty.channel;version="4.0.0.CR5-SNAPSHOT",
