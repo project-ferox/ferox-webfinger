@@ -8,11 +8,12 @@ import com.tantaman.ferox.api.request_response.IRequestChainer;
 import com.tantaman.ferox.api.request_response.IResponse;
 import com.tantaman.ferox.api.router.IRouteHandler;
 import com.tantaman.ferox.api.router.IRouteHandlerFactory;
+import com.tantaman.ferox.api.router.IRouteInitializer;
 import com.tantaman.ferox.api.router.IRouterBuilder;
 import com.tantaman.ferox.api.router.RouteHandlerAdapter;
 import com.tantaman.ferox.webfinger.priv.IdentityHandler;
 
-public class WebfingerInitializer {
+public class WebfingerInitializer implements IRouteInitializer {
 	public static final Logger logger = Logger.getLogger(WebfingerInitializer.class.getName());
 	
 	private final IResourceProvider resourceProvider;
@@ -22,7 +23,7 @@ public class WebfingerInitializer {
 		logger.log(Level.INFO, "Initialized");
 	}
 	
-	public void addWebfinger(IRouterBuilder routerBuilder) {
+	public void addRoutes(IRouterBuilder routerBuilder) {
 		final RouteHandlerAdapter metaHandler = new RouteHandlerAdapter() {
 			@Override
 			public void lastContent(IHttpContent content,
@@ -48,5 +49,10 @@ public class WebfingerInitializer {
 				return new IdentityHandler(resourceProvider);
 			}
 		});
+	}
+
+	@Override
+	public int getPriority() {
+		return 0;
 	}
 }
