@@ -2,6 +2,7 @@ package com.tantaman.ferox.webfinger.priv;
 
 import java.util.logging.Level;
 
+import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpResponseStatus;
 
 import com.tantaman.ferox.api.request_response.IHttpContent;
@@ -24,6 +25,7 @@ public class IdentityHandler extends RouteHandlerAdapter {
 			IRequestChainer next) {
 		String resource = content.getQueryParam("resource").get(0);
 		WebfingerInitializer.logger.log(Level.INFO, "Retrieving identity: " + resource);
+		response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 		try {
 			IResource r = resourceProvider.getIdentity(resource);
 			if (r == null) {
