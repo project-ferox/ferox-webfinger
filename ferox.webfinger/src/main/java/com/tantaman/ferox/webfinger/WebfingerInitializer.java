@@ -1,6 +1,7 @@
 package com.tantaman.ferox.webfinger;
 
 import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.handler.codec.http.HttpResponseStatus;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,15 +29,29 @@ public class WebfingerInitializer implements IRouteInitializer {
 		this.resourceProvider = resourceProvider;
 	}
 	
+	public void unsetResourceProvider() {
+		this.resourceProvider = null;
+	}
+	
 	public void addRoutes(IRouterBuilder routerBuilder) {
 		final RouteHandlerAdapter metaHandler = new RouteHandlerAdapter() {
 			@Override
 			public void lastContent(IHttpContent content,
 					IResponse response, IRequestChainer next) {
 				logger.log(Level.INFO, "Received last content");
-				IResource meta = resourceProvider.getMeta();
-				response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
-				response.send(meta.getContents(), meta.getContentType());
+				
+				if (resourceProvider == null) {
+					response.send("404 not found", HttpResponseStatus.NOT_FOUND);
+					return;
+				}
+				
+				try {
+					IResource meta = resourceProvider.getMeta();
+					response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+					response.send(meta.getContents(), meta.getContentType());
+				} catch (Exception e) {
+					response.send("Internal server error", HttpResponseStatus.INTERNAL_SERVER_ERROR);
+				}
 			}
 		};
 		

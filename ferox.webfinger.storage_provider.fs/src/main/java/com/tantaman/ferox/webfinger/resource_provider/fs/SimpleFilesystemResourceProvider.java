@@ -16,6 +16,10 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	public SimpleFilesystemResourceProvider() {
 	}
 	
+	public void activate(Map<String, String> configuration) {
+		setConfiguration((Map)configuration);
+	}
+	
 	public void setConfiguration(Map<Object, Object> configuration) {
 		String metaPath = (String)configuration.get("metaPath");
 		contentType = (String)configuration.get("contentType");

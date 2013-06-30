@@ -5,4 +5,4 @@ Bundle-SymbolicName: com.tantaman.ferox.webfinger.resource_provider.fs
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: com.tantaman.ferox.webfinger
-Service-Component: OSGI-INF/SimpleResourceProvider.xml
+Service-Component: OSGI-INF/*

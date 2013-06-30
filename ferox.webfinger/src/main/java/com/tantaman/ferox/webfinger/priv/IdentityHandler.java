@@ -27,14 +27,22 @@ public class IdentityHandler extends RouteHandlerAdapter {
 		WebfingerInitializer.logger.log(Level.INFO, "Retrieving identity: " + resource);
 		response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 		try {
+			if (resourceProvider == null) {
+				send404(response);
+				return;
+			}
 			IResource r = resourceProvider.getIdentity(resource);
 			if (r == null) {
-				response.send("Not found", HttpResponseStatus.NOT_FOUND);
+				send404(response);
 			} else {
 				response.send(r.getContents(), r.getContentType());
 			}
 		} catch (Exception e) {
 			response.send("Internal server error", HttpResponseStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	private void send404(IResponse response) {
+		response.send("Not found", HttpResponseStatus.NOT_FOUND);
 	}
 }

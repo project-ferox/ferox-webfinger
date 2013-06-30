@@ -1,8 +1,8 @@
 <?xml version='1.1'?>
 
-<component name="com.tantaman.ferox.webfinger.resource_provider.fs.SimpleFilesystemResourceProvider">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" configuration-policy="require" name="ferox.SimpleFilesystemResourceProvider">
   <implementation class="com.tantaman.ferox.webfinger.resource_provider.fs.SimpleFilesystemResourceProvider"/>
   <service>
     <provide interface="com.tantaman.ferox.webfinger.IResourceProvider"/>
   </service>
-</component>
+</scr:component>

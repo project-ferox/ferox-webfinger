@@ -1,8 +1,6 @@
 <?xml version='1.1'?>
 
-<component name="com.tantaman.ferox.webfinger.example.standalone.ExampleServer" immediate="true">
+<scr:component name="ferox.webfinger.ExampleServer" xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true">
   <implementation class="com.tantaman.ferox.webfinger.example.standalone.ExampleServer"/>
-  <reference name="feroxFactories" cardinality="1..1" interface="com.tantaman.ferox.api.IFeroxFactories" bind="setFeroxFactories"/>
-  <reference name="serverFactories" cardinality="1..1" interface="com.tantaman.ferox.api.server.IFeroxServerFactories" bind="setServerFactories"/>
-  <reference name="webfingerResourceProvider" cardinality="1..1" interface="com.tantaman.ferox.webfinger.IResourceProvider" bind="setWebfingerResourceProvider"/>
-</component>
+  <reference name="configAdmin" cardinality="1..1" interface="org.osgi.service.cm.ConfigurationAdmin" bind="setConfigAdmin"/>
+</scr:component>
