@@ -9,3 +9,4 @@ Import-Package: com.tantaman.ferox.api,
  io.netty.handler.codec.http;version="4.0.0.CR5-SNAPSHOT"
 Export-Package: com.tantaman.ferox.webfinger
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Service-Component: OSGI-INF/WebfingerInitializer.xml

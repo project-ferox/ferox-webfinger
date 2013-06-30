@@ -17,7 +17,7 @@ import com.tantaman.ferox.api.server.IFeroxServerBuilder;
 import com.tantaman.ferox.api.server.IFeroxServerFactories;
 import com.tantaman.ferox.webfinger.IResourceProvider;
 import com.tantaman.ferox.webfinger.WebfingerInitializer;
-import com.tantaman.lo4j._;
+import com.tantaman.lo4j.Lo;
 
 public class ExampleServer {
 	private IFeroxFactories feroxFactories;
@@ -62,7 +62,7 @@ public class ExampleServer {
 		// now add Ferox
 		IRouterBuilder routerBuilder = feroxFactories.createRouterBuilder();
 		
-		webfingerResourceProvider.setConfiguration(_.createMap(new String [] {
+		webfingerResourceProvider.setConfiguration(Lo.createMap(new String [] {
 				"contentType", "application/json",
 				"metaPath", "resources/webfinger/meta.json",
 				"identityRoot", "resources/webfinger/identities"

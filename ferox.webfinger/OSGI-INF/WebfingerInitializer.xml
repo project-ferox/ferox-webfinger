@@ -1,0 +1,7 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ferox.WebfingerInitializer">
+   <implementation class="com.tantaman.ferox.webfinger.WebfingerInitializer"/>
+   <service>
+    <provide interface="com.tantaman.ferox.api.router.IRouteInitializer"/>
+   </service>
+</scr:component>
