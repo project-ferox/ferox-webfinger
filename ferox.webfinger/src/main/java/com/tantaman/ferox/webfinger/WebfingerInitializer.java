@@ -18,11 +18,14 @@ import com.tantaman.ferox.webfinger.priv.IdentityHandler;
 public class WebfingerInitializer implements IRouteInitializer {
 	public static final Logger logger = Logger.getLogger(WebfingerInitializer.class.getName());
 	
-	private final IResourceProvider resourceProvider;
+	private volatile IResourceProvider resourceProvider;
 	
-	public WebfingerInitializer(IResourceProvider resourceProvider) {
-		this.resourceProvider = resourceProvider;
+	public WebfingerInitializer() {
 		logger.log(Level.INFO, "Initialized");
+	}
+	
+	public void setResourceProvider(IResourceProvider resourceProvider) {
+		this.resourceProvider = resourceProvider;
 	}
 	
 	public void addRoutes(IRouterBuilder routerBuilder) {

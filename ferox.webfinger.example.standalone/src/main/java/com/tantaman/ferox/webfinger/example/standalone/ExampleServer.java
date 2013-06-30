@@ -67,7 +67,8 @@ public class ExampleServer {
 				"metaPath", "resources/webfinger/meta.json",
 				"identityRoot", "resources/webfinger/identities"
 		}));
-		WebfingerInitializer init = new WebfingerInitializer(webfingerResourceProvider);
+		WebfingerInitializer init = new WebfingerInitializer();
+		init.setResourceProvider(webfingerResourceProvider);
 		init.addRoutes(routerBuilder);
 		b.use("ferox", feroxFactories.createFeroxChannelHandlerFactory(routerBuilder.build()));
 		
