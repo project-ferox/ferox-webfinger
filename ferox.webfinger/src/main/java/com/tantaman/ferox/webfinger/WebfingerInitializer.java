@@ -48,6 +48,12 @@ public class WebfingerInitializer implements IRouteInitializer {
 				try {
 					IResource meta = resourceProvider.getMeta();
 					response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+					
+					// Set the user data
+					response.setUserData(meta);
+					// Forward the request to the next handler
+					next.lastContent(content);
+					// send the response
 					response.send(meta.getContents(), meta.getContentType());
 				} catch (Exception e) {
 					response.send("Internal server error", HttpResponseStatus.INTERNAL_SERVER_ERROR);
