@@ -4,10 +4,8 @@ import com.tantaman.ferox.webfinger.entry.IStaticWebfingerEntry;
 
 public class StringResource implements IStaticWebfingerEntry {
 	private final String content;
-	private final String contentType;
 	
-	public StringResource(String contentType, String content) {
-		this.contentType = contentType;
+	public StringResource(String content) {
 		this.content = content;
 	}
 

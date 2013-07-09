@@ -10,8 +10,6 @@ import com.tantaman.ferox.webfinger.entry.IWebfingerEntry;
 
 public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	private String identityRoot;
-	private IWebfingerEntry meta;
-	private String contentType;
 	
 	public SimpleFilesystemResourceProvider() {
 	}
@@ -21,15 +19,7 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	}
 	
 	public void setConfiguration(Map<Object, Object> configuration) {
-		String metaPath = (String)configuration.get("metaPath");
-		contentType = (String)configuration.get("contentType");
 		identityRoot = (String)configuration.get("identityRoot");
-		
-		File f = new File(metaPath);
-		String m = readFully(f);
-		if (m == null) m = "";
-		
-		meta = new StringResource(contentType, m);
 	}
 	
 	@Override
@@ -42,7 +32,7 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 		if (ident == null) {
 			return null;
 		} else {
-			return new StringResource(contentType, ident);
+			return new StringResource(ident);
 		}
 	}
 	
@@ -59,10 +49,5 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 			if (scan != null)
 				scan.close();
 		}
-	}
-	
-	@Override
-	public IWebfingerEntry getMeta() {
-		return meta;
 	}
 }
