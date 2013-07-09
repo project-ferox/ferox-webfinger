@@ -12,9 +12,15 @@ import com.tantaman.ferox.api.router.RouteHandlerAdapter;
 import com.tantaman.ferox.webfinger.IResourceProvider;
 import com.tantaman.ferox.webfinger.Serializer;
 import com.tantaman.ferox.webfinger.WebfingerInitializer;
+import com.tantaman.ferox.webfinger.entry.IDynamicWebfingerEntry;
 import com.tantaman.ferox.webfinger.entry.IStaticWebfingerEntry;
 import com.tantaman.ferox.webfinger.entry.IWebfingerEntry;
 
+/**
+ * Handles the request for an identity
+ * @author tantaman
+ *
+ */
 public class IdentityHandler extends RouteHandlerAdapter {
 	private final IResourceProvider resourceProvider;
 	private final Serializer serializer = new Serializer();
@@ -23,6 +29,9 @@ public class IdentityHandler extends RouteHandlerAdapter {
 		this.resourceProvider = resourceProvider;
 	}
 
+	/**
+	 * Last content in the identity request has been received.
+	 */
 	@Override
 	public void lastContent(IHttpContent content, IResponse response,
 			IRequestChainer next) {
@@ -41,7 +50,14 @@ public class IdentityHandler extends RouteHandlerAdapter {
 				if (r instanceof IStaticWebfingerEntry) {
 					response.send(((IStaticWebfingerEntry)r).getContents(), "application/jrd+json");
 				} else {
-					
+					// set the IWebfingerEntry as the user data so other handlers
+					// down the line can add their own webfginer data to it
+					response.setUserData(r);
+					// call the next handler
+					next.lastContent(content);
+					// TODO: this isn't going to work since handlers can be a-sync.
+					// we need to add another webfinger handler as the last guy in the chain
+					response.send(serializer.serialize((IDynamicWebfingerEntry)r), "application/jrd+json");
 				}
 			}
 		} catch (Exception e) {
