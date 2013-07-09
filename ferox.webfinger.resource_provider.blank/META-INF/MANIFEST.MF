@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Blank
+Bundle-SymbolicName: ferox.webfinger.resource_provider.blank
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.tantaman.ferox.webfinger.resource_provider.blank
+Import-Package: com.tantaman.ferox.webfinger,
+ com.tantaman.ferox.webfinger.entry
+Service-Component: OSGI-INF/*
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

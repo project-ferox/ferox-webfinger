@@ -22,7 +22,7 @@ public class Serializer {
 			serialize(entry.getAliases(), result)
 			.append(",")
 		.append("\"properties\":");
-			serialize(entry.getProperties(), result)
+			serializeObject(entry.getProperties(), result)
 			.append(",")
 		.append("\"links\":");
 			serializeObjects(entry.getLinks(), result)

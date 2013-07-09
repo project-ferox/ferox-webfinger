@@ -35,10 +35,11 @@ public class IdentityHandler extends RouteHandlerAdapter {
 	@Override
 	public void lastContent(IHttpContent content, IResponse response,
 			IRequestChainer next) {
-		String resource = content.getQueryParam("resource").get(0);
-		WebfingerInitializer.logger.log(Level.INFO, "Retrieving identity: " + resource);
-		response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 		try {
+			String resource = content.getQueryParam("resource").get(0);
+			WebfingerInitializer.logger.log(Level.INFO, "Retrieving identity: " + resource);
+			response.headers().set(HttpHeaders.Names.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+			
 			if (resourceProvider == null) {
 				send404(response);
 				return;
