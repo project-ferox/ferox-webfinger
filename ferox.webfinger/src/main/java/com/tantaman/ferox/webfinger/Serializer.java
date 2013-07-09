@@ -52,7 +52,7 @@ public class Serializer {
 	public StringBuilder serialize(Map<String,String> props, StringBuilder buf) {
 		buf.append("{");
 		
-		boolean first = false;
+		boolean first = true;
 		for (Map.Entry<String, String> entry : props.entrySet()) {
 			if (!first)
 				buf.append(",");
@@ -70,7 +70,7 @@ public class Serializer {
 	public StringBuilder serializeObjects(List<Map<String, Object>> entries, StringBuilder buf) {
 		buf.append("[");
 		
-		boolean first = false;
+		boolean first = true;
 		for (Map<String,Object> entry : entries) {
 			if (!first) buf.append(","); else first = false;
 			serializeObject(entry, buf);
@@ -84,7 +84,7 @@ public class Serializer {
 	public StringBuilder serializeObject(Map<String,Object> props, StringBuilder buf) {
 		buf.append("{");
 		
-		boolean first = false;
+		boolean first = true;
 		for (Map.Entry<String, Object> entry : props.entrySet()) {
 			if (!first) buf.append(","); else first = false;
 			
