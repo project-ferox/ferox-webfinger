@@ -7,6 +7,7 @@ import com.tantaman.ferox.api.router.IRouteHandler;
 import com.tantaman.ferox.api.router.IRouteHandlerFactory;
 import com.tantaman.ferox.api.router.IRouteInitializer;
 import com.tantaman.ferox.api.router.IRouterBuilder;
+import com.tantaman.ferox.webfinger.priv.FinalIdentityHandler;
 import com.tantaman.ferox.webfinger.priv.IdentityHandler;
 
 public class WebfingerInitializer implements IRouteInitializer {
@@ -33,7 +34,14 @@ public class WebfingerInitializer implements IRouteInitializer {
 				logger.log(Level.INFO, "Returning identity handler");
 				return new IdentityHandler(resourceProvider);
 			}
-		});
+		}, 0);
+		
+		routerBuilder.get("/.well-known/webfinger", new IRouteHandlerFactory() {
+			@Override
+			public IRouteHandler create() {
+				return new FinalIdentityHandler();
+			}
+		}, Integer.MAX_VALUE);
 	}
 
 	@Override

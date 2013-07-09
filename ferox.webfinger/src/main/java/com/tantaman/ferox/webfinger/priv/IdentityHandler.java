@@ -56,9 +56,6 @@ public class IdentityHandler extends RouteHandlerAdapter {
 					response.setUserData(r);
 					// call the next handler
 					next.lastContent(content);
-					// TODO: this isn't going to work since handlers can be a-sync.
-					// we need to add another webfinger handler as the last guy in the chain
-					response.send(serializer.serialize((IDynamicWebfingerEntry)r), "application/jrd+json");
 				}
 			}
 		} catch (Exception e) {

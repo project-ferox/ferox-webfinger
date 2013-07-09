@@ -10,7 +10,7 @@ import com.tantaman.ferox.webfinger.entry.IDynamicWebfingerEntry;
 public class WebfingerEntry implements IDynamicWebfingerEntry {
 	private String subject;
 	private final List<String> aliases;
-	private final Map<String, Object> properties;
+	private final Map<String, String> properties;
 	private final List<Map<String, Object>> links;
 	
 	public WebfingerEntry(String subject) {
@@ -37,7 +37,7 @@ public class WebfingerEntry implements IDynamicWebfingerEntry {
 	}
 
 	@Override
-	public Map<String, Object> getProperties() {
+	public Map<String, String> getProperties() {
 		return properties;
 	}
 
