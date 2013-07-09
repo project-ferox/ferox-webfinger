@@ -11,7 +11,7 @@ public class ExampleServer {
 	public void setConfigAdmin(ConfigurationAdmin configAdmin) {
 		Configuration config;
 		try {
-			config = configAdmin.createFactoryConfiguration("ferox.webfinger.SimpleFilesystemResourceProvider");
+			config = configAdmin.getConfiguration("ferox.webfinger.SimpleFilesystemResourceProvider");
 			Dictionary<String, Object> dict = config.getProperties();
 			
 			if (dict == null)
