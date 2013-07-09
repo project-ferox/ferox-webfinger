@@ -24,8 +24,7 @@ public class ExampleServer {
 			if (dict == null)
 				dict = new Hashtable<>();
 			
-			dict.put("contentType", "application/json");
-			dict.put("metaPath", "resources/webfinger/meta.json");
+			dict.put("contentType", "application/jrd+json");
 			dict.put("identityRoot", "resources/webfinger/identities");
 			
 			config.update(dict);

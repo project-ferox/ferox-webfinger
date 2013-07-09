@@ -9,12 +9,15 @@ import com.tantaman.ferox.api.request_response.IHttpContent;
 import com.tantaman.ferox.api.request_response.IRequestChainer;
 import com.tantaman.ferox.api.request_response.IResponse;
 import com.tantaman.ferox.api.router.RouteHandlerAdapter;
-import com.tantaman.ferox.webfinger.IResource;
 import com.tantaman.ferox.webfinger.IResourceProvider;
+import com.tantaman.ferox.webfinger.Serializer;
 import com.tantaman.ferox.webfinger.WebfingerInitializer;
+import com.tantaman.ferox.webfinger.entry.IStaticWebfingerEntry;
+import com.tantaman.ferox.webfinger.entry.IWebfingerEntry;
 
 public class IdentityHandler extends RouteHandlerAdapter {
 	private final IResourceProvider resourceProvider;
+	private final Serializer serializer = new Serializer();
 	
 	public IdentityHandler(IResourceProvider resourceProvider) {
 		this.resourceProvider = resourceProvider;
@@ -31,11 +34,15 @@ public class IdentityHandler extends RouteHandlerAdapter {
 				send404(response);
 				return;
 			}
-			IResource r = resourceProvider.getIdentity(resource);
+			IWebfingerEntry r = resourceProvider.getIdentity(resource);
 			if (r == null) {
 				send404(response);
 			} else {
-				response.send(r.getContents(), r.getContentType());
+				if (r instanceof IStaticWebfingerEntry) {
+					response.send(((IStaticWebfingerEntry)r).getContents(), "application/jrd+json");
+				} else {
+					
+				}
 			}
 		} catch (Exception e) {
 			response.send("Internal server error", HttpResponseStatus.INTERNAL_SERVER_ERROR);

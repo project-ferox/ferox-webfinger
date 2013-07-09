@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.tantaman.ferox.webfinger.IResource;
 import com.tantaman.ferox.webfinger.IResourceProvider;
+import com.tantaman.ferox.webfinger.entry.IWebfingerEntry;
 
 public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	private String identityRoot;
-	private IResource meta;
+	private IWebfingerEntry meta;
 	private String contentType;
 	
 	public SimpleFilesystemResourceProvider() {
@@ -33,7 +33,7 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	}
 	
 	@Override
-	public IResource getIdentity(String resource) {
+	public IWebfingerEntry getIdentity(String resource) {
 		resource = resource.replace("..", "").replace("/", "").replace("@", "-").replace(":", "-");
 		File f = new File(identityRoot + "/" + resource);
 		
@@ -62,7 +62,7 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	}
 	
 	@Override
-	public IResource getMeta() {
+	public IWebfingerEntry getMeta() {
 		return meta;
 	}
 }
