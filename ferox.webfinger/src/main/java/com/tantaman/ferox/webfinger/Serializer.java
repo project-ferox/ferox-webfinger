@@ -81,6 +81,7 @@ public class Serializer {
 		return buf;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public StringBuilder serializeObject(Map<String,Object> props, StringBuilder buf) {
 		buf.append("{");
 		
@@ -91,7 +92,7 @@ public class Serializer {
 			buf.append("\"").append(entry.getKey()).append("\":");
 			
 			if (entry.getValue() instanceof Map) {
-				serializeObject((Map)entry.getValue(), buf);
+				serializeObject((Map<String, Object>)entry.getValue(), buf);
 			} else {
 				buf.append("\"").append(entry.getValue()).append("\"");
 			}

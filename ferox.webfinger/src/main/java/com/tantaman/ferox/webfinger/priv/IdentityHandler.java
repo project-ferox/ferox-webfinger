@@ -1,18 +1,16 @@
 package com.tantaman.ferox.webfinger.priv;
 
-import java.util.logging.Level;
-
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpResponseStatus;
+
+import java.util.logging.Level;
 
 import com.tantaman.ferox.api.request_response.IHttpContent;
 import com.tantaman.ferox.api.request_response.IRequestChainer;
 import com.tantaman.ferox.api.request_response.IResponse;
 import com.tantaman.ferox.api.router.RouteHandlerAdapter;
 import com.tantaman.ferox.webfinger.IResourceProvider;
-import com.tantaman.ferox.webfinger.Serializer;
 import com.tantaman.ferox.webfinger.WebfingerInitializer;
-import com.tantaman.ferox.webfinger.entry.IDynamicWebfingerEntry;
 import com.tantaman.ferox.webfinger.entry.IStaticWebfingerEntry;
 import com.tantaman.ferox.webfinger.entry.IWebfingerEntry;
 
@@ -23,7 +21,6 @@ import com.tantaman.ferox.webfinger.entry.IWebfingerEntry;
  */
 public class IdentityHandler extends RouteHandlerAdapter {
 	private final IResourceProvider resourceProvider;
-	private final Serializer serializer = new Serializer();
 	
 	public IdentityHandler(IResourceProvider resourceProvider) {
 		this.resourceProvider = resourceProvider;

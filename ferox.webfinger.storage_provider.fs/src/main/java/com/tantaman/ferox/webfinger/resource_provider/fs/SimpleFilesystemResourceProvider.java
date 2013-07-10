@@ -14,6 +14,7 @@ public class SimpleFilesystemResourceProvider implements IResourceProvider {
 	public SimpleFilesystemResourceProvider() {
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void activate(Map<String, String> configuration) {
 		setConfiguration((Map)configuration);
 	}
