@@ -14,6 +14,6 @@ public class FinalIdentityHandler extends RouteHandlerAdapter {
 	public void lastContent(IHttpContent content, IResponse response,
 			IRequestChainer next) {
 		IDynamicWebfingerEntry r = response.getUserData();
-		response.send(serializer.serialize((IDynamicWebfingerEntry)r), "application/jrd+json");
+		response.send(serializer.serialize((IDynamicWebfingerEntry)r), "application/json"); //"application/jrd+json" remotestorage client is barfing on this type?
 	}
 }
