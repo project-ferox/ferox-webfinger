@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ferox.webfinger
 Bundle-SymbolicName: com.tantaman.ferox.webfinger
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.0.1.qualifier
 Import-Package: com.tantaman.ferox.api,
  com.tantaman.ferox.api.request_response,
  com.tantaman.ferox.api.router,
- io.netty.channel;version="4.0.0.CR5-SNAPSHOT",
- io.netty.handler.codec.http;version="4.0.0.CR5-SNAPSHOT"
+ io.netty.channel;version="[4.0,5)",
+ io.netty.handler.codec.http;version="[4.0,5)"
 Export-Package: com.tantaman.ferox.webfinger,
  com.tantaman.ferox.webfinger.entry
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
